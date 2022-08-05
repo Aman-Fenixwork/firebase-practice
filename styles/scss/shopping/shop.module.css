@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400&display=swap");
+.shoppingContainer {
+  font-family: "Poppins", sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+.shoppingContainer .shop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  width: 600px;
+  padding: 20px;
+}
+.shoppingContainer .shop .shoppingHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+}
+.shoppingContainer .shop .shoppingHeader input {
+  width: 430px;
+  height: 25px;
+}
+.shoppingContainer .shop .shoppingHeader button {
+  padding: 15px;
+  width: 100px;
+}
+.shoppingContainer .shop .shoppingItems {
+  width: 100%;
+  margin-top: 15px;
+}
+.shoppingContainer .shop .shoppingItems .shoppingItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+.shoppingContainer .shop .shoppingItems .shoppingItem h1 {
+  padding-left: 5px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+.shoppingContainer .shop .shoppingItems .shoppingItem div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  width: 60px;
+}
+.shoppingContainer .shop .shoppingItems .shoppingItem div .icon {
+  cursor: pointer;
+  height: 30px;
+}
+.shoppingContainer .shop .shoppingItems .shoppingItem div .icon:nth-child(1) {
+  color: lime;
+}
+.shoppingContainer .shop .shoppingItems .shoppingItem div .icon:nth-child(2) {
+  color: red;
+}/*# sourceMappingURL=shop.module.css.map */

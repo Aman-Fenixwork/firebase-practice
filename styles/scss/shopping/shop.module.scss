@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400&display=swap');
+
+@mixin flex($direction,$justify,$align){
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+    flex-direction: $direction;
+}
+
+.shoppingContainer{
+    font-family: "Poppins",sans-serif;
+    height: 100vh;
+    @include flex(row,center,center);
+    .shop{
+        @include flex(column,center,center);
+        box-shadow: 0px 0px 20px 10px rgba(0,0,0,0.2);
+        border-radius: 10px;
+        width: 600px;
+        padding: 20px;
+        .shoppingHeader{
+            @include flex(row,space-between,center);
+            width: 100%;
+            input{
+                width: 430px;
+                height: 25px;
+            }
+            button{
+                padding : 15px;
+                width: 100px;
+            }
+        }
+        .shoppingItems{
+            width: 100%;
+            margin-top: 15px;
+            .shoppingItem{
+                h1{
+                    padding-left: 5px;
+                    font-weight: 500;
+                    letter-spacing: .5px;
+                    text-transform: uppercase;
+                    font-size: 16px;
+                }
+                @include flex(row,space-between,center);
+                div{
+                    @include flex(row,space-between,center);
+                    width: 60px;
+                    .icon{
+                        cursor: pointer;
+                        height: 30px;
+                        &:nth-child(1){
+                            color: lime;
+                        }
+                        &:nth-child(2){
+                            color: red;
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+}
