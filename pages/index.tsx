@@ -2,8 +2,63 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-
+import {signInWithGooglePopup, signInWithEmail, auth} from  "../config/firebase"
+import { signInWithCustomToken } from "firebase/auth";
+import { setDoc, doc, getDoc } from 'firebase/firestore'
+import { db } from "../config/firebase"
+import  { useState } from "react"
 const Home: NextPage = () => {
+
+  const timestamp: string = new Date().toLocaleTimeString();
+  const [token, setToken] = useState<string>();
+  const [values, setValues] = useState({
+    email: '',
+    password : ''
+  })
+
+  const handleInputs = (e:any) => {
+    const {name, value} = e.target;
+    setValues({
+      ...values, 
+      [name] : value
+    })
+  }
+  const handleGoogleLogin = () => {
+    signInWithGooglePopup().then(() => {
+      alert("Login Successful");
+    })
+    .catch(e => {
+      console.log("Error :", e);
+    })
+  }
+
+  const handleData = async ()=> {
+    const userDocRef = doc(db, "users",timestamp);
+    setDoc(userDocRef,{
+      name : "aman",
+      age : 22,
+      gender : "male",
+      time : timestamp
+    })
+    const userSnapshot = await getDoc(userDocRef);
+    console.log(userSnapshot);
+  }
+
+  const fetchData = async () => {
+    const res = await fetch("api/customToken")
+    .then((response) => response.json())
+    .then((data) => {
+      signInWithCustomToken(auth, data.token)
+      .then((userCredential) => {
+        alert("Login Successful");
+      })
+      .catch((error) => {
+        console.log("Error while login with this token :",error)
+      });
+    })
+    .catch(e => console.log("Error :", e))
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -32,24 +87,20 @@ const Home: NextPage = () => {
             <h2>Learn &rarr;</h2>
             <p>Learn about Next.js in an interactive course with quizzes!</p>
           </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+        </div>
+        <div>
+          <h2 style={{cursor : "pointer"}} onClick={handleGoogleLogin}>Google Login &rarr;</h2>
+        </div>
+        <div>
+          <h2 style={{cursor : "pointer"}} onClick={handleData}>Push &rarr;</h2>
+        </div>
+        <div>
+          <h2 style={{cursor : "pointer"}} onClick={fetchData}>Fetch &rarr;</h2>
+        </div>
+        <div>
+          <input style={{padding : "10px 0px 10px 5px"}} type="text" name="email" placeholder="Email" onChange={handleInputs}/>
+          <input style={{padding : "10px 0px 10px 5px"}} type="password" name="password" placeholder='Password' onChange={handleInputs}/>
+          <button onClick={()=>signInWithEmail(values.email, values.password)} style={{padding : "10px 5px 10px 5px", cursor : "pointer"}}>Login</button>
         </div>
       </main>
 

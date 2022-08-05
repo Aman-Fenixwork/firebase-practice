@@ -1,0 +1,103 @@
+@mixin flex($direction,$justify,$align){
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+    flex-direction: $direction;
+}
+
+.loginContainer{
+    background: linear-gradient( 119.11deg, #080d17 14.81%, #060214 93.39% );
+    width: 100%;
+    height: 100vh;
+    @include flex(column,center,center);
+}
+.login {
+    width: 414px;
+    background: linear-gradient(133.8deg, rgba(33, 35, 60, 0.8) 9.83%, rgba(33, 30, 52, 0.8) 90.87%);
+    box-shadow: 0px 0px 27px rgb(0 0 0 / 11%), inset 5px 4px 38px rgb(10 30 69 / 11%);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    z-index: 2;
+    @include flex(column,center,center);
+    font-family: "Manrope", sans-serif;
+    .loginMain{
+        padding-bottom: .5rem;
+        padding-top: 2rem !important;
+        padding-right: 3rem;
+        padding-left: 3rem;
+        @include flex(column,center,center);
+        h2{
+            font-family: var(--font-family-zendots);
+            font-style: normal;
+            font-weight: normal;
+            font-size: 24px;
+            line-height: 32px;
+            color: #B0B0B0;
+            text-transform: uppercase;
+        }
+        small{
+            color: #fff;
+            font-size: 12px;
+            text-align: center;
+            margin-top: -15px;
+        }
+        input{
+            width: 250px;
+            height: 40px;
+            margin-top: 15px;
+            padding: 0 24px;
+            color: var(--white-color);
+            font-weight: 400;
+            font-size: 12px;
+            font-family: "Manrope", sans-serif;
+            font-style: normal;
+            line-height: 16px;
+            border: 1px solid #5d5471;
+            border-radius: 11px;
+            background: transparent;
+            outline: none;
+            color: #fff;
+        }
+        .googleDiv {
+            @include flex(row,center,center);
+            width: 250px;
+            height: 25px;
+            margin-top: 1rem;
+            cursor: pointer;
+            font-family: "Manrope", sans-serif;
+            span{
+                font-size: 10px;
+                color: rgb(255, 255, 255);
+                padding: 0px 16px;
+            }
+        }
+    }
+    
+    .loginBottom{
+        margin-top: 30px;
+        @include flex(row,space-between,center);
+        width: 100%;
+        font-family: "Manrope", sans-serif;
+        button{
+            font-weight: 500;
+            font-size: 10px;
+            font-family: "Manrope", sans-serif;
+            font-style: normal;
+            border-radius: 11px;
+            border-color: transparent;
+            background: none;
+            color: #ffff;
+            cursor: pointer;
+            height: 40px;
+            &:nth-child(1){
+                width: 162px;
+                height: 40px;
+            }
+            &:nth-child(2){
+                width: 73px;
+                height: 40px;
+            }
+        }
+    }
+}
